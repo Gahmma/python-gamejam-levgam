@@ -1,0 +1,95 @@
+/* Reset some default styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Dark mode styles */
+body {
+  background-color: #222;
+  color: #eee;
+}
+
+/* Container styles */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header styles */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 32px;
+}
+
+/* Navigation styles */
+.navbar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #eee;
+  padding: 5px 10px;
+}
+
+.navbar a:hover {
+  border-bottom: 2px solid #fff;
+}
+
+/* Content styles */
+.content {
+  line-height: 1.5;
+}
+
+/* Chat styles */
+.chat {
+  background-color: #333;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.chat p {
+  margin: 0;
+  padding: 0;
+}
+
+.chat .user {
+  font-weight: bold;
+  color: #3af;
+}
+
+.chat .message {
+  color: #eee;
+}
+
+/* Footer styles */
+.footer {
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  color: #888;
+}
