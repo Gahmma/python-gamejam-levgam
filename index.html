@@ -1,12 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>MUD Server</title>
+<title>Tavern MUD</title>
 </head>
 <body>
-<h1>MUD Server</h1>
-<p>This is a MUD server that is running on GitHub Pages.</p>
-<p>To connect to the server, open a telnet client and connect to port 8000.</p>
-<script src="mud_server.py"></script>
+<h1>Tavern MUD</h1>
+<p>You are in a tavern. There are tables and chairs, and a bar in the center of the room. There is a door to the north.</p>
+<p>What do you want to do?</p>
+<input type="text" id="input">
+<button onclick="doAction()">Do it!</button>
 </body>
+<script>
+var world = {
+  rooms: [
+    {
+      name: "Tavern",
+      description: "You are in a tavern. There are tables and chairs, and a bar in the center of the room. There is a door to the north."
+    },
+    {
+      name: "Kitchen",
+      description: "The kitchen is a busy place. Cooks are bustling around, preparing food for the hungry patrons."
+    },
+    {
+      name: "Garden",
+      description: "The garden is a peaceful place. There are flowers blooming, and birds singing in the trees."
+    }
+  ],
+  characters: [],
+  objects: [
+    {
+      name: "Chair",
+      description: "A sturdy-looking chair."
+    },
+    {
+      name: "Table",
+      description: "A wooden table with four chairs."
+    },
+    {
+      name: "Bar",
+      description: "A long wooden bar with a variety of drinks on display."
+    }
+  ],
+  players: []
+};
+
+function doAction() {
+  var input = document.getElementById("input").value;
+  var room = world.rooms[0];
+  var description = room.description;
+  var character = world.characters[0];
+  var object = world.objects[0];
+
+  if (input === "north") {
+    document.getElementById("output").innerHTML = "You move north. There is a door to the east.";
+  } else if (input === "talk to bartender") {
+    document.getElementById("output").innerHTML = character.description;
+  } else if (input === "sit in chair") {
+    document.getElementById("output").innerHTML = object.description;
+  } else if (input === "drink from bar") {
+    document.getElementById("output").innerHTML = "You take a drink from the bar. It's delicious!";
+  } else if (input === "join") {
+    var name = prompt("What is your name?");
+    world.players.push({name: name});
+    document.getElementById("output").innerHTML = "Welcome to the tavern, " + name + "!";
+  } else if (input === "say") {
+    var message = prompt("What do you want to say?");
+    for (var player of world.players) {
+      if (player.room === room) {
+        player.output.innerHTML = name + " says: " + message;
+      }
+    }
+  } else if (input === "move") {
+    var direction = prompt("Which direction do you want to move?");
+    if (direction === "north") {
+      var newRoom = world.rooms[1];
+      for (var player of world.players) {
+        player.room = newRoom;
+        player.output.innerHTML = "You move north.";
+      }
+    }
+  } else {
+    document.getElementById("output").innerHTML = "I don't understand that command.";
+  }
+}
+</script>
 </html>
