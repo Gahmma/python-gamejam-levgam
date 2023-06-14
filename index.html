@@ -8,13 +8,22 @@ body {
   color: white;
   font-family: monospace;
 }
+
+.output {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid black;
+}
+
+.input {
+  width: 200px;
+}
 </style>
 </head>
 <body>
 <h1>Tavern MUD</h1>
-<p>You are in a tavern. There are tables and chairs, and a bar in the center of the room. There is a door to the north.</p>
-<p>What do you want to do?</p>
-<input type="text" id="input">
+<p id="output"></p>
+<input type="text" class="input" id="input">
 <button onclick="doAction()">Do it!</button>
 </body>
 <script>
@@ -74,7 +83,7 @@ function doAction() {
     var message = prompt("What do you want to say?");
     for (var player of world.players) {
       if (player.room === room) {
-        player.output.innerHTML = name + " says: " + message;
+        player.output.innerHTML += name + " says: " + message + "\n";
       }
     }
   } else if (input === "move") {
@@ -83,7 +92,7 @@ function doAction() {
       var newRoom = world.rooms[1];
       for (var player of world.players) {
         player.room = newRoom;
-        player.output.innerHTML = "You move north.";
+        player.output.innerHTML = "You move north.\n";
       }
     }
   } else {
